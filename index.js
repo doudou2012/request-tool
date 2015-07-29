@@ -8,7 +8,7 @@ var fs = require('fs'),
     crypto = require('crypto');
 
 var loops = 1,
-    url = "http://localhost:5000/log",
+    url = "http://statistics.bbwc.cn/logs",
     events = ['click','view','tap','double-click','scroll'],
     catids = [1000,1001,1002,1003,1004,1005],
     artids = [2001,20003,30001,23451,35662,45672],
@@ -71,8 +71,13 @@ var doRequest = function(){
 
     });
 };
-for (var i=0;i<program.requests;i++){
-    doRequest();
+
+if (program.requests > 0){
+    for (var i=0;i<program.requests;i++){
+        doRequest();
+    }
+}else{
+    setInterval(doRequest,600);
 }
 
 
